@@ -9,12 +9,15 @@ from std_msgs.msg import Float32
 
 from math import pi
 
-wheel_radius = 0.125  # In m
+wheel_radius_default = 0.125  # In metres
 
 
 class CalcRobotSpeed(Node):
     def __init__(self):
         super().__init__("wheel_speed_sub_node")
+
+        # Declare a parameter to be used by this node
+        self.declare_parameter("wheel_radius", wheel_radius_default)
 
         # Setup the subscriber to the "/rpm" topic
         self.sub = self.create_subscription(
@@ -35,7 +38,15 @@ class CalcRobotSpeed(Node):
 
         # Convert from rpm to ground speed
         input_rpm = msg.data
-        output_speed = 2 * pi * wheel_radius * input_rpm / 60  # Speed in m/s
+
+        # The wheel radius parameter can be accessed using `get_parameter`, and
+        # the value contained within can be accessed using `get_parameter_value`
+
+        wheel_radius_param = self.get_parameter(
+            "wheel_radius").get_parameter_value().double_value
+
+        output_speed = 2 * pi * wheel_radius_param \
+            * input_rpm / 60  # Speed in m/s
 
         print(f"Calculated robot speed: {output_speed}")
 

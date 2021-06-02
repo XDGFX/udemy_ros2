@@ -144,3 +144,40 @@ ros2 topic echo /speed
 ```
 (also using `speed` or `/speed` seem to both work, this may be because the echo
 is relative to the root, and so there is no need to specify the leading slash)
+
+## Working with parameters
+Parameters are a way of sharing data across different nodes, in a way like
+global variables which can be used throughout.
+
+While nodes are running, you can see their parameters using:
+```bash
+ros2 param list
+```
+
+The default `use_sim_time` will likely be the only parameter at default.
+
+You can view the state of parameters using:
+```bash
+ros2 param get /node parameter
+ros2 param get /wheel_speed_pub_node use_sim_time
+```
+
+For more information use:
+```bash
+ros2 param describe /node parameter
+ros2 param describe /wheel_speed_pub_node use_sim_time
+```
+
+Likewise, you can change the value of a parameter using:
+```bash
+ros2 param set /node parameter value
+ros2 param get /wheel_speed_pub_node wheel_radius 0.5
+```
+
+To share parameters between nodes, ROS services can be used. One node can
+request the value of a parameter from another node.
+
+Services are available by default to get parameters, these can be seen using:
+```bash
+ros2 service list
+```
