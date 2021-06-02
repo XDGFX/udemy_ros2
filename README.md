@@ -119,3 +119,28 @@ ros2 run package_name script_name.py
 ros2 run udemy_ros2_pkg publisher.py
 ```
 
+## Working with topics
+Once you have nodes which publish data to topics, it may be helpful to view the
+topics outside of a package for debugging.
+
+To list the topics, first source the workspace as has been done previously,
+then:
+```bash
+ros2 topic list
+```
+
+This will show a list of possible topics
+```
+callum@quokka:~/Workspaces/udemy_ros2_ws$ ros2 topic list
+/parameter_events
+/rosout
+/rpm
+/speed
+```
+
+You can listen in on a specific topic using the `echo` command
+```bash
+ros2 topic echo /speed
+```
+(also using `speed` or `/speed` seem to both work, this may be because the echo
+is relative to the root, and so there is no need to specify the leading slash)

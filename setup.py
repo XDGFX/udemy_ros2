@@ -22,6 +22,8 @@ setup(
         'console_scripts': [
             "publisher = udemy_ros2_pkg.publisher:main",
             "subscriber = udemy_ros2_pkg.subscriber:main",
+            "measure_wheel_speed = udemy_ros2_pkg.measure_wheel_speed:main",
+            "calculate_robot_speed = udemy_ros2_pkg.calculate_robot_speed:main",
         ],
     },
 )
