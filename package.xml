@@ -3,16 +3,23 @@
 <package format="3">
   <name>udemy_ros2_pkg</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Corresponding code for the Udemy ROS2 with Python course</description>
   <maintainer email="xdgfx@todo.todo">callum</maintainer>
-  <license>TODO: License declaration</license>
+  <license>None</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
+  <!-- EXECUTION DEPENDENCIES -->
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+
+  <!-- TEST DEPENDENCIES -->
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
 
   <export>
-    <build_type>ament_cmake</build_type>
+    <build_type>ament_python</build_type>
   </export>
 </package>

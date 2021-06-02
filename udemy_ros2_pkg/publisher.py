@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+# The main ROS Python client library
 import rclpy
 
 # The main node class which will be used to create custom nodes
