@@ -233,3 +233,43 @@ Launch files can be used to run external commands also, by importing
 ```python
 from launch.actions import ExecuteProcess
 ```
+
+## Bag files
+These are used to record robot data, so it can be reviewed and played back at a
+later time.
+
+To start recording into a ROS bag:
+```bash
+ros2 bag record             -a              -o test.bag
+                  include all topics        specify the
+                  alternatively use         output bag
+                    the topic name           filename
+```
+
+Stop recording with `Ctrl+C`
+
+To view info about the bag:
+```bash
+ros2 bag info test.bag/
+```
+
+```log
+Files:             test.bag_0.db3
+Bag size:          19.3 KiB
+Storage id:        sqlite3
+Duration:          51.0s
+Start:             Jun  3 2021 10:48:40.88 (1622713720.88)
+End:               Jun  3 2021 10:49:31.88 (1622713771.88)
+Messages:          109
+Topic information: Topic: /parameter_events | Type: rcl_interfaces/msg/ParameterEvent | Count: 5 | Serialization Format: cdr
+                   Topic: /rosout | Type: rcl_interfaces/msg/Log | Count: 0 | Serialization Format: cdr
+                   Topic: /rpm | Type: std_msgs/msg/Float32 | Count: 52 | Serialization Format: cdr
+                   Topic: /speed | Type: std_msgs/msg/Float32 | Count: 52 | Serialization Format: cdr
+```
+
+Play it back using:
+```bash
+ros2 bag play -l test.bag/
+```
+*the `-l` will loop the file after it has completed*
+
