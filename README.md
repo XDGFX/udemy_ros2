@@ -232,6 +232,4 @@ Launch files can be used to run external commands also, by importing
 
 ```python
 from launch.actions import ExecuteProcess
-
-
 ```
