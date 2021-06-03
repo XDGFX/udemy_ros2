@@ -273,3 +273,38 @@ ros2 bag play -l test.bag/
 ```
 *the `-l` will loop the file after it has completed*
 
+## Installing packages
+This section will look at including the official `image_common` package, which
+can be used to interface with USB cameras.
+
+[ROS1 Documentation](http://wiki.ros.org/image_common)
+[ROS2 Source](https://github.com/ros-perception/image_common/tree/ros2)
+
+There are two ways to install this package, as it is an official ROS package.
+
+1. Install via `apt`
+```bash
+sudo apt install ros-$ROS_DISTRO-image-common
+```
+*Note that all spaces are replaced with dashes, and the bash variable
+`$ROS_DISTRO` will be replaced with `foxy` in this install.*
+
+It will install into the global ROS foxy location, which (if originally
+installed using prebuilt binarys with apt), this is under
+```
+/opt/ros/foxy/share/image_common
+```
+
+2. Bundle with our workspace and compile
+   We will bundle the `usb_cam` package, by cloning it into our `/src` folder
+   under the workspace
+```bash
+git clone -b ros2 https://github.com/ros-drivers/usb_cam.git 
+```
+
+Alternatively
+```bash
+git clone https://github.com/ros-drivers/usb_cam.git
+cd usb_cam/
+git switch ros2
+```
