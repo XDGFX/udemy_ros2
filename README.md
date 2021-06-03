@@ -308,3 +308,30 @@ git clone https://github.com/ros-drivers/usb_cam.git
 cd usb_cam/
 git switch ros2
 ```
+
+## Services
+Services and messages can only be used with `CMake` packages! They are not
+currently compatible with pure Python packages :(...
+To create services, we put them inside the package under the `srv/` folder.
+
+```bash
+touch srv/OddEvenCheck.srv
+```
+*Note that naming convention uses CamelCase.*
+
+The service file contains information about the message it expects to receive,
+and the message it should respond with.
+
+Once it's created, we need to add some dependencies to our `package.xml` file so
+we can build new interface types.
+
+```xml
+<!-- Allow building of service -->
+<build_depend>rosidl_default_generators</build_depend>
+
+<!-- Allow running of service -->
+<exec_depend>rosidl_default_runtime</exec_depend>
+
+<!-- Add it to the group of default interfaces-->
+<member_of_group>rosidl_interface_packages</member_of_group>
+```

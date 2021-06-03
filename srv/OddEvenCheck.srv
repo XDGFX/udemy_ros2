@@ -1,0 +1,11 @@
+# This service is used to send an integer to a server, and wait for a response
+# which determines if the value was odd or even.
+
+# type name
+int64 number
+
+# Three dashes indicate the response
+---
+
+# type name
+string decision

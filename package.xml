@@ -7,17 +7,22 @@
   <maintainer email="xdgfx@todo.todo">callum</maintainer>
   <license>None</license>
 
+  <!-- BUILD DEPENDENCIES -->
+  <build_depend>rosidl_default_generators</build_depend>
 
   <!-- EXECUTION DEPENDENCIES -->
   <exec_depend>rclpy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
-
+  <exec_depend>rosidl_default_runtime</exec_depend>
 
   <!-- TEST DEPENDENCIES -->
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
   <test_depend>python3-pytest</test_depend>
+
+  <!-- GROUPS -->
+  <member_of_group>rosidl_interface_packages</member_of_group>
 
   <export>
     <build_type>ament_python</build_type>
