@@ -181,3 +181,57 @@ Services are available by default to get parameters, these can be seen using:
 ```bash
 ros2 service list
 ```
+
+## Creating a launch script
+Currently nodes are being run one at a time, manually. By creating a launch
+script, multiple nodes can be started at once. In ROS1, this was done using
+`xml` files, however ROS2 switched to using Python files.
+
+They use the format `name.launch.py`, to indicate they are a launch file, and go
+inside a `launch/` folder.
+
+Create a file under `launch/`
+```bash
+touch launch/rm_node.launch.py
+```
+
+To load launch files when the package is compiled, it must be added to the
+`setup.py` file:
+
+```python
+import os
+from glob import glob
+
+...
+
+data_files=[
+    ('share/ament_index/resource_index/packages',
+        ['resource/' + package_name]),
+    ('share/' + package_name, ['package.xml']),
+    (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py'))
+],
+```
+
+This tells the setup to look inside the `share/{package_name}/launch` folder and
+load all files which end with `launch.py`.
+
+Once compiled with
+```bash
+colcon build
+```
+
+and the workspace is sourced, the launch file can be run using
+```bash
+ros2 launch package_name launch_file.py
+ros2 launch udemy_ros2_pkg rm_node.launch.py
+```
+
+#### n.b.
+Launch files can be used to run external commands also, by importing
+`ExecuteProcess` from the `launch.actions` module.
+
+```python
+from launch.actions import ExecuteProcess
+
+
+```
