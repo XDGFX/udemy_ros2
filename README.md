@@ -335,3 +335,39 @@ we can build new interface types.
 <!-- Add it to the group of default interfaces-->
 <member_of_group>rosidl_interface_packages</member_of_group>
 ```
+
+For more information on what's needed, including what to add to `CMakeLists.txt`,
+see (the official documentation.)[https://docs.ros.org/en/ros2_documentation/galactic/Tutorials/Custom-ROS2-Interfaces.html]
+
+## Actions
+Actions are similar to services, but are mainly for communication which has
+three distinct parts:
+- Goal (the initial message)
+- Feedback (status updates on the goal)
+- Result (final response message)
+
+Actions can go under the `action/` folder, and use a similar naming convention
+to services, with the file extension `.action`.
+
+The action file is split into three parts (as shown above), using three dashes,
+similar to services.
+
+We need the same dependencies as services in our `package.xml` file:
+```xml
+<!-- Allow building of service -->
+<build_depend>rosidl_default_generators</build_depend>
+
+<!-- Allow running of service -->
+<exec_depend>rosidl_default_runtime</exec_depend>
+
+<!-- Add it to the group of default interfaces-->
+<member_of_group>rosidl_interface_packages</member_of_group>
+```
+
+With an additional dependency:
+```xml
+<depend>action_msgs</depend>
+```
+
+For more information on what's needed, including what to add to `CMakeLists.txt`,
+see (the official documentation.)[https://docs.ros.org/en/ros2_documentation/galactic/Tutorials/Custom-ROS2-Interfaces.html]
